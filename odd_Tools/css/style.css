@@ -1,0 +1,8 @@
+.odd-nav {
+  background-color: #0e7ccf;
+}
+
+.odd-title,
+.odd-title:hover {
+  color: #fff !important;
+}

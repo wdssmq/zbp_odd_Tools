@@ -6,3 +6,26 @@
 .odd-title:hover {
   color: #fff !important;
 }
+
+a:link,
+a:visited {
+  border-bottom: 1px solid transparent;
+}
+
+a:hover {
+  border-bottom: 1px solid currentColor;
+}
+
+.kodogu-multi a {
+  color: black;
+}
+
+.multi-left span {
+  font-size: 2.3rem;
+  width: 2.3rem;
+  height: 2.3rem;
+  display: block;
+  line-height: 1;
+  text-align: center;
+  margin-right: .3rem;
+}

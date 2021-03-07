@@ -13,14 +13,19 @@ function odd_Tools_Rewrite($inpurl, $url)
   global $zbp;
   $url = trim($url, "/");
   $qWord = $zbp->Config('odd_Tools')->qWord;
-  $qVlue = GetVars($qWord, "GET");
   $r = UrlRule::OutputUrlRegEx("{%host%}{$qWord}/{%alias%}", 'article');
   $m = array();
-  if (preg_match($r, $url, $m) == 1 || !empty($qVlue)) {
+  if (preg_match($r, $url, $m) == 1) {
     if (isset($m["alias"])) {
       $qVlue = $m["alias"];
     }
     odd_Tools_Display($qVlue);
+    die();
+  }
+  $r = UrlRule::OutputUrlRegEx("{%host%}{$qWord}", 'article');
+  $m = array();
+  if (preg_match($r, $url, $m) == 1) {
+    odd_Tools_Display_Index();
     die();
   }
 }
@@ -32,9 +37,9 @@ function odd_Tools_GenTpl(&$templates)
   if (!is_dir($dir)) {
     @mkdir($dir, 0755);
   }
-  $kodoguList = odd_Tools_GetDirsInPoketto();
+  $kodoguList = odd_Tools_PathInfosInPoketto();
   foreach ($kodoguList as $name => $doguDir) {
-    $curTpl = "{$doguDir}/{$name}.php";
+    $curTpl = $doguDir["tpl"];
     if (!is_file($curTpl)) {
       continue;
     }
@@ -54,8 +59,8 @@ function odd_Tools_Path($file, $t = 'path')
   global $zbp;
   $result = $zbp->$t . 'zb_users/plugin/odd_Tools/';
   switch ($file) {
-    case 'file':
-      return $result . 'file';
+    case 'url':
+      return $zbp->host . $zbp->Config('odd_Tools')->qWord . "/";
       break;
     case 'usr':
       return $result . 'usr/';

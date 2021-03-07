@@ -9,10 +9,20 @@
   {template:-plugin-hero}
   <section class="section">
     <div class="container">
-      <!-- <h3 class="title">{$appName}</h3>
-      <h4 class="subtitle">{$description}</h4> -->
       <div class="columns">
         <div class="column is-four-fifths">
+          <div class="field is-horizontal">
+            <div class="field-label">
+              <label class="label">{$appName}</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  {$description}
+                </div>
+              </div>
+            </div>
+          </div><!-- / .field -->
           <div class="field is-horizontal">
             <div class="field-label is-normal">
               <label class="label" for="jsonUrl">JSON</label>
@@ -69,7 +79,6 @@
     </div><!-- / .container -->
   </section>
   {template:-plugin-footer}
-  <script src="{$pokettoUrl}{$appID}/{$appID}.js"></script>
 </body>
 
 </html>

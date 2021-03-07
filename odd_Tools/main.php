@@ -29,7 +29,9 @@ require $blogpath . 'zb_system/admin/admin_top.php';
     <?php require "about.php"; ?>
   </div>
   <div id="divMain2">
-    <?php odd_Tools_List();?>
+    <p>首页：<?php echo odd_Tools_Path("url"); ?></p>
+    <hr>
+    <?php odd_Tools_List(1); ?>
   </div>
 </div>
 

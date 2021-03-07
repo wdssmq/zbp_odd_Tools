@@ -3,45 +3,60 @@ function odd_Tools_FilterTpl(&$context)
 {
   $context = str_replace("-plugin-", "plugin_odd_Tools/", $context);
 }
+function odd_Tools_Display_Index()
+{
+  global $zbp;
+  $zbp->template->SetTags("title", "怪奇工具箱");
+  $zbp->template->SetTags('list', odd_Tools_List());
+  $zbp->template->SetTags("description", "各种奇怪的工具列表");
+  $zbp->template->Display("plugin_odd_Tools/index");
+}
 function odd_Tools_Display($name)
 {
   global $zbp;
-  $pokettoUrl = odd_Tools_Path("poketto/", "host");
-  $zbp->template->SetTags("pokettoUrl", $pokettoUrl);
-  $info = require(odd_Tools_Path("poketto/{$name}/{$name}.info.php"));
+  $kodoguList = odd_Tools_PathInfosInPoketto();
+  $curKodogu = $kodoguList[$name];
+  // 读取工具信息
+  $info = require($curKodogu["info"]);
   $info["appID"] = $name;
+  $info["title"] = $info["appName"];
+  $zbp->template->SetTags("title", "怪奇工具箱");
   foreach ($info as $key => $value) {
     $zbp->template->SetTags($key, $value);
   }
-  $js = odd_Tools_Path("{$name}/{$name}.js");
+  $js = $curKodogu["js"];
   if (is_file($js)) {
-    $script = odd_Tools_Path("{$name}/{$name}.js", "host");
+    $script = str_replace($zbp->path, $zbp->host, $js);;
     $zbp->footer .= "<script src=\"{$script}\"></script>";
   }
   $zbp->template->Display("plugin_odd_Tools/{$name}");
 }
-function odd_Tools_List()
+function odd_Tools_List($isMng = false)
 {
   global $zbp;
-  $kodoguList = odd_Tools_GetDirsInPoketto();
-  foreach ($kodoguList as $name => $dir) {
-    $info =  require("{$dir}/${name}.info.php");
+  $kodoguList = odd_Tools_PathInfosInPoketto();
+  foreach ($kodoguList as $name => $curKodogu) {
+    $info =  require($curKodogu["info"]);
     $qWord = $zbp->Config('odd_Tools')->qWord;
     $info["url"] = "{$zbp->host}{$qWord}/{$name}/";
     $kodoguList[$name] = (object)$info;
   }
-  $zbp->template->SetTags('list', $kodoguList);
-  $rlt = $zbp->template->Output("plugin_odd_Tools/admin-list");
-  echo $rlt;
+  if ($isMng) {
+    $zbp->template->SetTags('list', $kodoguList);
+    $rlt = $zbp->template->Output("plugin_odd_Tools/admin-list");
+    echo $rlt;
+  }
+  return $kodoguList;
 }
 
-function odd_Tools_GetDirsInPoketto()
+function odd_Tools_PathInfosInPoketto()
 {
   $pokettoPath = odd_Tools_Path("poketto/", "path");
   $dirs = GetDirsInDir($pokettoPath);
-  $rltDirs = array();
+  $rltList = array();
   foreach ($dirs as $name) {
-    $rltDirs[$name] = "{$pokettoPath}/{$name}/";
+    $curDir = "{$pokettoPath}/{$name}";
+    $rltList[$name] = array("dir" => "{$curDir}/", "info" => "{$curDir}/{$name}.info.php", "js" => "{$curDir}/{$name}.js", "tpl" => "{$curDir}/{$name}.php");
   }
-  return $rltDirs;
+  return $rltList;
 }

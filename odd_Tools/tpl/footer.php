@@ -6,5 +6,6 @@
     <p>Powered By {$zblogphphtml} && 怪奇工具箱 {if $user.ID>0}<a href="{$host}zb_users/plugin/odd_Tools/main.php" title="怪奇工具箱">后台查看</a>{/if}</p>
   </div>
 </footer>
-<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{$host}zb_system/script/jquery-2.2.4.min.js"></script>
+<script src="{$host}zb_users/plugin/odd_Tools/css/mz-ui/mizu.js"></script>
 {$footer}

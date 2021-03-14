@@ -42,7 +42,7 @@ function odd_Tools_List($isMng = false)
     $kodoguList[$name] = (object)$info;
   }
   if ($isMng) {
-    $zbp->template->SetTags('list', $kodoguList);
+    $zbp->template->SetTags('kodoguList', $kodoguList);
     $rlt = $zbp->template->Output("plugin_odd_Tools/admin-list");
     echo $rlt;
   }
@@ -59,4 +59,12 @@ function odd_Tools_PathInfosInPoketto()
     $rltList[$name] = array("dir" => "{$curDir}/", "info" => "{$curDir}/{$name}.info.php", "js" => "{$curDir}/{$name}.js", "tpl" => "{$curDir}/{$name}.php");
   }
   return $rltList;
+}
+
+function odd_Tools_a($href, $title, $text = "")
+{
+  if (empty($text)) {
+    $text = $href;
+  }
+  return "<a target=\"_blank\" href=\"{$href}\" title=\"{$title}\">$text</a>";
 }

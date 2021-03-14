@@ -42,6 +42,7 @@
             <div class="field-body">
               <div class="field">
                 <div class="control">
+                  <i class="readonly"></i>
                   <textarea spellcheck="false" rows="17" class="odd-rlt textarea" placeholder="生成内容"></textarea>
                 </div>
               </div>

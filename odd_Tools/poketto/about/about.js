@@ -53,6 +53,6 @@ $(function () {
       });
       strRlt += "</p>";
     }
-    return strRlt.replace(/ <\/p>/,"<p>");
+    return strRlt.replace(/ <\/p>/,"</p>");
   }
 });

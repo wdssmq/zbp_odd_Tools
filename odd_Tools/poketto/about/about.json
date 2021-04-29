@@ -1,1 +1,49 @@
-../../../../../../#Git/wdssmq-about/about.json
+{
+  "shields": [
+    {
+      "label": "",
+      "msg": "SEO是啥联盟",
+      "color": "yellowgreen"
+    },
+    {
+      "label": "Feed",
+      "msg": "FeedsPub",
+      "color": "brightgreen",
+      "urlBase": "https://feeds.pub/feed/-feed-",
+      "feed": "https://www.wdssmq.com/feed.php"
+    },
+    {
+      "label": "Feed",
+      "msg": "Inoreader",
+      "color": "blue",
+      "urlBase": "https://www.innoreader.com/feed/-feed-",
+      "feed": "https://www.wdssmq.com/feed.php"
+    },
+    {
+      "label": "Feed",
+      "msg": "feed.wdssmq.com",
+      "color": "yellow",
+      "url": "https://feed.wdssmq.com"
+    },
+    {
+      "label": "爱发电",
+      "msg": "@wdssmq",
+      "color": "blueviolet",
+      "url": "https://afdian.net/@wdssmq"
+    },
+    {
+      "label": "mastodon",
+      "msg": "wdssmq",
+      "imgBase": "https://img.shields.io/mastodon/follow/-id-?domain=-domain-",
+      "id": 142218,
+      "domain": "https://wxw.moe/",
+      "url": "https://wxw.moe/@wdssmq"
+    },
+    {
+      "label": "QQ",
+      "msg": "349467624",
+      "color": "0086F9",
+      "url": "https://wpa.qq.com/msgrd?v=3&uin=349467624&site=qq&menu=yes"
+    }
+  ]
+}

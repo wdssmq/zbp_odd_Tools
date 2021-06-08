@@ -1,4 +1,5 @@
 {foreach $list as $info}
+<!-- item -->
 <div class="column is-one-third">
   <div class="kodogu-multi is-flex is-align-items-center">
     <div class="multi-left">
@@ -10,4 +11,5 @@
     </div>
   </div>
 </div>
+<!-- /item -->
 {/foreach}

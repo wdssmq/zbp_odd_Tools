@@ -85,6 +85,17 @@ function InstallPlugin_odd_Tools()
   }
   $zbp->BuildTemplate();
 }
+// 插件升级时执行
+function UpdatePlugin_odd_Tools()
+{
+  global $zbp;
+  $zbp->BuildTemplate();
+}
+// 旧版兼容
+function odd_Tools_Updated()
+{
+  UpdatePlugin_odd_Tools();
+}
 function UninstallPlugin_odd_Tools()
 {
 }

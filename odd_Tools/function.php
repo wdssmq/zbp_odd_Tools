@@ -6,6 +6,7 @@ function odd_Tools_FilterTpl(&$context)
 function odd_Tools_Display_Index()
 {
   global $zbp;
+  $zbp->template->SetTags("type", "index");
   $zbp->template->SetTags("title", "怪奇工具箱");
   $zbp->template->SetTags('list', odd_Tools_List());
   $zbp->template->SetTags("description", "各种奇怪的工具列表");
@@ -20,6 +21,7 @@ function odd_Tools_Display($name)
   $info = require($curKodogu["info"]);
   $info["appID"] = $name;
   $info["title"] = $info["appName"];
+  $zbp->template->SetTags("type", $name);
   $zbp->template->SetTags("title", "怪奇工具箱");
   foreach ($info as $key => $value) {
     $zbp->template->SetTags($key, $value);

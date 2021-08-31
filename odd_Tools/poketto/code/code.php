@@ -11,6 +11,8 @@
     <div class="container">
       <div class="columns">
         <div class="column is-four-fifths">
+
+          <!-- 标题描述 -->
           <div class="field is-horizontal">
             <div class="field-label">
               <label class="label">{$appName}</label>
@@ -23,6 +25,7 @@
               </div>
             </div>
           </div><!-- / .field -->
+
           <div class="field is-horizontal">
             <div class="field-label is-normal">
               <label class="label" for="jsonUrl">JSON</label>
@@ -48,6 +51,7 @@
               </div>
             </div>
           </div><!-- / .field -->
+
           <div class="field is-horizontal">
             <div class="field-label">
               <!-- Left empty for spacing -->
@@ -62,7 +66,7 @@
               </div>
             </div>
           </div><!-- / .field -->
-        </div>
+        </div><!-- /.column -->
         <div class="column"></div>
       </div><!-- / .columns -->
     </div><!-- / .container -->

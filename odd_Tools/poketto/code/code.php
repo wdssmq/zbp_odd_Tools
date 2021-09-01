@@ -67,7 +67,9 @@
             </div>
           </div><!-- / .field -->
         </div><!-- /.column -->
-        <div class="column"></div>
+        <div class="column">
+          {template:-plugin-sidebar}
+        </div>
       </div><!-- / .columns -->
     </div><!-- / .container -->
   </section>

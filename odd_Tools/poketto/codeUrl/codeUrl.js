@@ -19,7 +19,11 @@ $(function () {
   }
   // 加
   $(".odd-encode").click(function () {
-    const inpUrl = $("#inpUrl").val();
+    let inpUrl = $("#inpUrl").val().trim();
+    if (inpUrl === "") {
+      inpUrl = location.href;
+      $("#inpUrl").val(inpUrl);
+    }
     $("#outUrl").val(fnEnCode(inpUrl));
   });
   // 加
@@ -31,10 +35,10 @@ $(function () {
     const arrIn = strIn.split("");
     // 生成新数组
     const arrOut = arrIn.map((el, i) => {
-      if (i == 0 || i % 4 !== 0) {
+      if ((i + 1) % 4 !== 0) {
         return el;
       }
-      const serID = (i / 4 - 1) % len;
+      const serID = ((i + 1) / 4 - 1) % len;
       return `${el}${map[serID]}`;
     });
     // console.log(map, arrIn, arrOut);

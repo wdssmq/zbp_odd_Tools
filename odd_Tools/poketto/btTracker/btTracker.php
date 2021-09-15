@@ -20,7 +20,7 @@
         </div>
         <div class="column">
           <div class="field">
-            <label class="label" for="output">输入</label>
+            <label class="label" for="output">输出</label>
             <div class="control">
               <textarea class="textarea" name="output" id="output" cols="30" rows="10"></textarea>
             </div>

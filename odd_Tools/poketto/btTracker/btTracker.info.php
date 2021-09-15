@@ -1,1 +1,1 @@
-<?php return array('appName' => 'BT Tracker', 'description' => "BT Tracker List 获取");
+<?php return array('appName' => 'BT Tracker', 'description' => "Tracker List 获取、去重");

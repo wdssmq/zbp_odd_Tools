@@ -3,6 +3,7 @@ function odd_Tools_FilterTpl(&$context)
 {
   $context = str_replace("-plugin-", "plugin_odd_Tools/", $context);
 }
+// 工具条首页
 function odd_Tools_Display_Index()
 {
   global $zbp;
@@ -12,6 +13,7 @@ function odd_Tools_Display_Index()
   $zbp->template->SetTags("description", "各种奇怪的工具列表");
   $zbp->template->Display("plugin_odd_Tools/index");
 }
+// 内页
 function odd_Tools_Display($name)
 {
   global $zbp;
@@ -25,11 +27,6 @@ function odd_Tools_Display($name)
   $zbp->template->SetTags("title", "怪奇工具箱");
   foreach ($info as $key => $value) {
     $zbp->template->SetTags($key, $value);
-  }
-  $js = $curKodogu["js"];
-  if (is_file($js)) {
-    $script = str_replace($zbp->path, $zbp->host, $js);;
-    $zbp->footer .= "<script src=\"{$script}\"></script>";
   }
   $zbp->template->Display("plugin_odd_Tools/{$name}");
 }
@@ -51,9 +48,10 @@ function odd_Tools_List($isMng = false)
   return $kodoguList;
 }
 
+// 获取 poketto 内项目的路径信息；
 function odd_Tools_PathInfosInPoketto()
 {
-  $pokettoPath = odd_Tools_Path("poketto/", "path");
+  $pokettoPath = odd_Tools_Path("poketto", "path");
   $dirs = GetDirsInDir($pokettoPath);
   $rltList = array();
   foreach ($dirs as $name) {

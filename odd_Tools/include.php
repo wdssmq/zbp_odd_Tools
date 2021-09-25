@@ -29,6 +29,7 @@ function odd_Tools_Rewrite($inpurl, $url)
     die();
   }
 }
+// 插件相关模板编译
 function odd_Tools_GenTpl(&$templates)
 {
   global $zbp;
@@ -37,6 +38,7 @@ function odd_Tools_GenTpl(&$templates)
   if (!is_dir($dir)) {
     @mkdir($dir, 0755);
   }
+  // 编译 poketto/ 内工具模板
   $kodoguList = odd_Tools_PathInfosInPoketto();
   foreach ($kodoguList as $name => $doguDir) {
     $curTpl = $doguDir["tpl"];
@@ -45,8 +47,15 @@ function odd_Tools_GenTpl(&$templates)
     }
     $tplCont = file_get_contents($curTpl);
     odd_Tools_FilterTpl($tplCont);
+    // 工具自身 JavaScript 引入模板
+    $js = $doguDir["js"];
+    if (is_file($js)) {
+      $script = str_replace($zbp->path, $zbp->host, $js);
+      $tplCont = str_replace("</body>", "<script src=\"{$script}\"></script>}\n</body>", $tplCont);
+    }
     $templates["plugin_odd_Tools/{$name}"] = $tplCont;
   }
+  // tpl/ 文件夹内的模板编译
   $arrTpls = GetFilesInDir(odd_Tools_Path("tpl"), "php");
   foreach ($arrTpls as $name => $curTpl) {
     $tplCont = file_get_contents($curTpl);
@@ -90,7 +99,7 @@ function UpdatePlugin_odd_Tools()
 {
   global $zbp;
   $zbp->BuildTemplate();
-  if (!$zbp->Config('odd_Tools')->HasKey("sidebar")){
+  if (!$zbp->Config('odd_Tools')->HasKey("sidebar")) {
     $zbp->Config('odd_Tools')->sidebar = '<p><a class="img-wrap" target="_blank" href="https://afdian.net/@wdssmq"><img src="https://www.wdssmq.com/zb_users/logos/afdian.png" alt="爱发电" title="爱发电"></a></p><p>可在后台编辑</p>';
     $zbp->SaveConfig('odd_Tools');
   }

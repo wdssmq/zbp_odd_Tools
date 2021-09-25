@@ -72,8 +72,9 @@
       </div><!-- / .columns -->
     </div><!-- / .container -->
   </section>
-  <script src="https://cdn.bootcss.com/clipboard.js/2.0.4/clipboard.min.js"></script>
   {template:-plugin-footer}
+  <!-- 一键复制 -->
+  <script src="https://cdn.bootcss.com/clipboard.js/2.0.4/clipboard.min.js"></script>
 </body>
 
 </html>

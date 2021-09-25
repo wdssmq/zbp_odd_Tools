@@ -61,6 +61,29 @@ function odd_Tools_PathInfosInPoketto()
   return $rltList;
 }
 
+// 创建新工具文件夹
+function odd_Tools_CreatDogu($newName, $newDesc)
+{
+  $tpl_dir = odd_Tools_Path("tpl_new");
+  $target_dir = odd_Tools_Path("poketto/{$newName}");
+  // 判断存在
+  if (is_dir($target_dir)) {
+    return false;
+  }
+  @mkdir($target_dir, 0755);
+  // 复制文件
+  $tpl_files = GetFilesInDir($tpl_dir, "js|php");
+  foreach ($tpl_files as $tpl_name => $tpl_file) {
+    $con = file_get_contents($tpl_file);
+    $con = strtr($con, array("newName" => $newName, "newDesc" => $newDesc));
+    $target_file = str_replace($tpl_dir, $target_dir, $tpl_file);
+    $target_file = str_replace("name.", "{$newName}.", $target_file);
+    $target_file = str_replace(".tpl", "", $target_file);
+    file_put_contents($target_file, $con);
+  }
+}
+
+// 输出链接
 function odd_Tools_a($href, $title, $text = "")
 {
   if (empty($text)) {

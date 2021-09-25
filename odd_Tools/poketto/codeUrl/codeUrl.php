@@ -1,4 +1,4 @@
-<?php die();?>
+<?php die(); ?>
 <!DOCTYPE html>
 <html lang="{$language}">
 
@@ -70,7 +70,25 @@
               </div>
             </div>
           </div><!-- / .field -->
+
+          <hr>
+
+          <div class="field is-horizontal">
+            <div class="field-label">
+              推荐
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <p><a href="{odd_Tools_Path('url')}Pinyin/" title="向文本内间(zhe)隔(yang)插入拼音；">Pinyin - 向文本内间(zhe)隔(yang)插入拼音；</a></p>
+                  <p><a href="{odd_Tools_Path('url')}codeUrl/" title="移除网址内的汉字，或者添加">codeUrl - 移除网址内的汉字，或者添加</a></p>
+                </div>
+              </div>
+            </div>
+          </div><!-- / .field -->
+
         </div>
+
         <div class="column">
           {template:-plugin-sidebar}
         </div>

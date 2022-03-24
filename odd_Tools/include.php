@@ -51,7 +51,7 @@ function odd_Tools_GenTpl(&$templates)
     $js = $doguDir["js"];
     if (is_file($js)) {
       $script = str_replace($zbp->path, $zbp->host, $js);
-      $tplCont = str_replace("</body>", "<script src=\"{$script}\"></script>}\n</body>", $tplCont);
+      $tplCont = str_replace("</body>", "<script src=\"{$script}\"></script>\n</body>", $tplCont);
     }
     $templates["plugin_odd_Tools/{$name}"] = $tplCont;
   }

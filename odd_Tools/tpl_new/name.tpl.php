@@ -29,12 +29,12 @@
 
           <div class="field is-horizontal">
             <div class="field-label is-normal">
-              <label class="label" for="newNameInPut">输入内容</label>
+              <label class="label" for="newName-InPut">输入内容</label>
             </div>
             <div class="field-body">
               <div class="field">
                 <div class="control">
-                  <input id="newNameInPut" name="newNameInPut" class="input select" type="text" placeholder="输入内容" value="">
+                  <input id="newName-InPut" name="newName-InPut" class="input select" type="text" placeholder="输入内容" value="">
                 </div>
               </div>
             </div>
@@ -42,12 +42,12 @@
 
           <div class="field is-horizontal">
             <div class="field-label is-normal">
-              <label class="label" for="newNameOutPut">执行结果</label>
+              <label class="label" for="newName-OutPut">执行结果</label>
             </div>
             <div class="field-body">
               <div class="field">
                 <div class="control">
-                  <input id="newNameOutPut" name="newNameOutPut" class="input select" type="text" placeholder="执行结果" value="">
+                  <input id="newName-OutPut" name="newName-OutPut" class="input select" type="text" placeholder="执行结果" value="">
                 </div>
               </div>
             </div>
@@ -74,7 +74,7 @@
       </div><!-- / .columns -->
     </div><!-- / .container -->
   </section>
-  {template:-plugin-footer}、
+  {template:-plugin-footer}
   <!-- 一键复制 -->
   <!-- <script src="https://cdn.bootcss.com/clipboard.js/2.0.4/clipboard.min.js"></script> -->
 </body>

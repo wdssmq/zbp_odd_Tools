@@ -1,10 +1,10 @@
 $(function () {
   // 自动选中监听
-  $("input.select").mouseenter(function () {
+  $("input.select, textarea.auto-select").mouseenter(function () {
     $(this).focus().select();
   });
   // 默认点击事件
-  $("#btn-newName").click(function () {
+  $("#newName-btn").click(function () {
 
   });
 });

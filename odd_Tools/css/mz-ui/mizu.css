@@ -29,6 +29,10 @@ i.w100 + * {
   font-size: 14px;
 }
 
+.mr-20 {
+  margin-right: 20px;
+}
+
 /* 表单相关 */
 .mz-field:not(:last-child) {
   margin-bottom: 0.75rem;

@@ -70,7 +70,7 @@ i.w100 + * {
   align-items: center;
 }
 
-.field-body .control {
+.field-body .control.w100 {
   flex-grow: 1;
   max-width: 97%;
 }

@@ -14,6 +14,7 @@ $(function () {
       $(".odd-rlt").val(html);
     });
   }
+
   function fnGenRlt(object) {
     let strRlt = "";
     for (const key in object) {
@@ -26,6 +27,7 @@ $(function () {
     }
     return strRlt;
   }
+
   function fnGenHash(inputStr) {
     // 初始字符
     const baseCode = inputStr.replace(/\D/g, "");

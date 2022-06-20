@@ -24,7 +24,8 @@
                 <tr>
                   <th>数量</th>
                   <th>总价</th>
-                  <th>均价（只读）</th>
+                  <th width="17%">备注</th>
+                  <th>单价（只读）</th>
                 </tr>
               </thead>
               <template x-for="(tr, index) in rows" :key="index">
@@ -36,12 +37,15 @@
                     <input @input="_update()" class="input" type="number" step="0.01" x-model="rows[index].sum">
                   </td>
                   <td>
+                    <input @input="_update()" class="input" type="text" x-model="rows[index].note">
+                  </td>
+                  <td>
                     <input readonly="true" class="input" type="text" :value="rows[index].unit">
                   </td>
                 </tr>
               </template>
               <tr>
-                <td colspan="3"><input @click="_add" class="button is-primary is-outlined is-fullwidth" type="button" value="添加行"></td>
+                <td colspan="4"><input @click="_add" class="button is-primary is-outlined is-fullwidth" type="button" value="添加行"></td>
               </tr>
             </table>
           </div>
@@ -81,20 +85,40 @@
                       lsData.push(row);
                     }
                   });
-                  lsData.sort((a, b) => {
-                    return a.num - b.num;
-                  });
+                  this._sort(lsData);
                   lsObj.set('odd-tools-unit-price', lsData);
+                },
+                _sort(objList) {
+                  // 排序
+                  objList.sort((a, b) => {
+                    // 按 note 字符串排序
+                    if (a.note !== b.note) {
+                      // 2022-06-20 - 2020-09-20
+                      a.note = a.note || '';
+                      b.note = b.note || '';
+                      // 2022-06-20 - 2020-09-20
+                      return -a.note.localeCompare(b.note);
+                    }
+                    // 按 num 值排序
+                    if (a.num !== b.num) {
+                      return a.num - b.num;
+                    }
+                    // 按 sum 值排序
+                    if (a.sum !== b.sum) {
+                      return a.sum - b.sum;
+                    }
+                  });
                 },
                 _add() {
                   let curNum = 1;
                   if (this.lstRow.num) {
-                    curNum = this.lstRow.num + 1;
+                    curNum = parseFloat(this.lstRow.num) + 1;
                   }
                   this.lstRow = {
                     num: curNum,
                     sum: curNum,
-                    unit: curNum / curNum
+                    unit: curNum / curNum,
+                    note: ''
                   };
                   this.rows.push(this.lstRow);
                 },
@@ -106,6 +130,7 @@
                   if (lsData === null || lsData.length === 0) {
                     this._add();
                   } else {
+                    // this._sort(lsData);
                     this._loadLstRow(lsData);
                     this.rows = lsData;
                   }

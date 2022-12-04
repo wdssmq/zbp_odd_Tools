@@ -56,7 +56,7 @@ require $blogpath . 'zb_system/admin/admin_top.php';
       <ul class="content-box-tabs">
         <li><a href="#def" class="default-tab current">开始</a></li>
         <li><a href="#config">配置项</a></li>
-        <li><a href="#xnxf-about" class="xnxf-about-btn tab-btn">关于</a></li>
+        <li><a href="#about" class="xnxf-about-btn tab-btn">关于</a></li>
       </ul>
       <div style="clear: both"></div>
       <div class="content-box-content">
@@ -111,7 +111,7 @@ require $blogpath . 'zb_system/admin/admin_top.php';
             </table>
           </form>
         </div>
-        <div class="tab-content" id="xnxf-about">
+        <div class="tab-content" id="about">
           <?php require "about.php"; ?>
         </div>
       </div>

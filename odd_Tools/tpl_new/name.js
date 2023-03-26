@@ -4,7 +4,7 @@ $(function () {
     $(this).focus().select();
   });
   // 默认点击事件
-  $("#newName-btn").click(function () {
+  $("#newName-Btn").click(function () {
 
   });
 });

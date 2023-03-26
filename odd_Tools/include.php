@@ -53,6 +53,11 @@ function odd_Tools_GenTpl(&$templates)
       $script = str_replace($zbp->path, $zbp->host, $js);
       $tplCont = str_replace("</body>", "<script src=\"{$script}\"></script>\n</body>", $tplCont);
     }
+    $css = $doguDir["css"];
+    if (is_file($css)) {
+      $style = str_replace($zbp->path, $zbp->host, $css);
+      $tplCont = str_replace("</head>", "<link rel=\"stylesheet\" href=\"{$style}\">\n</head>", $tplCont);
+    }
     $templates["plugin_odd_Tools/{$name}"] = $tplCont;
   }
   // tpl/ 文件夹内的模板编译

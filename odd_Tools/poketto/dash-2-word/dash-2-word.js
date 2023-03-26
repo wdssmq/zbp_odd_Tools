@@ -13,7 +13,7 @@ $(function () {
     return sYear + "-" + sMonth + "-" + sDate;
   }
   // 实时获取时间
-  const _curDate = () => { return new Date(); };
+  const _curDate = () => { return new Date() };
   // 自动选中监听
   $("input.select, textarea.auto-select").mouseenter(function () {
     $(this).focus().select();

@@ -1,7 +1,7 @@
 $(function () {
   const curTitle = document.title;
   const curSearch = window.location.search;
-  const curUrl = window.location.href.replace(curSearch, "").replace(/\/$/, '');
+  const curUrl = window.location.href.replace(curSearch, "").replace(/\/$/, "");
   // 如果 curSearch 不为空
   if (curSearch) {
     let strSearch = curSearch.replace(/^\?/, "");

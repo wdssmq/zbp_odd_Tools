@@ -63,8 +63,8 @@ $(function () {
       let curInt = n.charCodeAt(index) + n.charCodeAt(n_len - index - 1) + 71;
       rlt.cache.push(
         [curInt, n.charCodeAt(index), n.charCodeAt(n_len - index - 1)].join(
-          " , "
-        )
+          " , ",
+        ),
       );
       curInt = (curInt % 26) + 10;
       rlt.data.push(curInt.toString(36));

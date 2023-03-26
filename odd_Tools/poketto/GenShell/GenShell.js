@@ -43,7 +43,7 @@ $(function () {
           default:
             break;
         }
-        html += `</div>`;
+        html += "</div>";
       });
       return html;
     })(app));
@@ -78,16 +78,16 @@ $(function () {
         "description": "版本号",
         "type": "text",
         "default": "2.4.1",
-        "url": "https://github.com/docker/compose/releases/"
+        "url": "https://github.com/docker/compose/releases/",
       }],
       "command": ["sudo curl -L https://github.com/docker/compose/releases/download/v{{version}}/docker-compose-`uname -s`-`uname -m` \\", " -o /usr/local/bin/docker-compose", "sudo chmod +x /usr/local/bin/docker-compose", "docker-compose --version"],
       "fn": function (args) {
         let rlt = this.command.join("\n");
         rlt = rlt.replace(/{{version}}/g, args.version.trim("v"));
         return rlt;
-      }
-    }
-  ]
+      },
+    },
+  ];
 
   apps.forEach((item) => {
     fnGenHTML(item);

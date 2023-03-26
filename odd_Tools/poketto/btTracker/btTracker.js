@@ -29,7 +29,7 @@ $(function () {
       console.error(this);
     };
     xmlhttp.open("GET", url, true);
-    //xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    // xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xmlhttp.send(null);
   }
   document.getElementById("input").value = "";
@@ -38,24 +38,26 @@ $(function () {
     "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best_ip.txt",
     function (data) {
       document.getElementById("input").value += data;
-    }
+    },
   );
   fnGet(
     "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt",
     function (data) {
       document.getElementById("input").value += data;
-    }
+    },
   );
   fnGet("https://newtrackon.com/api/stable", function (data) {
     document.getElementById("input").value += data;
   });
 
   // 用于生成种子内压缩格式的 tracker 信息
+  // 禁用本行的 eslint 检查
+  // eslint-disable-next-line no-unused-vars
   function fnSplice() {
     const input = document.getElementById("input").value;
     const arrUrls = input.split(/[\r\n]{1,}/);
     let rltStr;
-    for (x in arrUrls) {
+    for (let x in arrUrls) {
       if (x == 0) {
         rltStr = "ll" + arrUrls[x].length + ":" + arrUrls[x];
       } else if (rltStr.indexOf(arrUrls[x]) == -1) {

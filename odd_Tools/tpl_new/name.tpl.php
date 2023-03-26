@@ -60,7 +60,7 @@
             <div class="field-body">
               <div class="field">
                 <div class="control">
-                  <button id="newName-btn" class="button is-info">
+                  <button id="newName-Btn" class="button is-info">
                     newName
                   </button>
                 </div>

@@ -56,7 +56,13 @@ function odd_Tools_PathInfosInPoketto()
   $rltList = array();
   foreach ($dirs as $name) {
     $curDir = "{$pokettoPath}/{$name}";
-    $rltList[$name] = array("dir" => "{$curDir}/", "info" => "{$curDir}/{$name}.info.php", "js" => "{$curDir}/{$name}.js", "tpl" => "{$curDir}/{$name}.php");
+    $rltList[$name] = array(
+      "dir" => "{$curDir}/",
+      "info" => "{$curDir}/{$name}.info.php",
+      "js" => "{$curDir}/{$name}.js",
+      "css" => "{$curDir}/{$name}.css",
+      "tpl" => "{$curDir}/{$name}.php"
+    );
   }
   return $rltList;
 }

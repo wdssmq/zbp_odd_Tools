@@ -72,6 +72,7 @@ $(function () {
       //   return false;
       // }
       GenCode._err(0);
+      GenCode.cycle = parseInt(GenCode.cycle);
       return true;
     },
     // 更新 period
@@ -117,7 +118,7 @@ $(function () {
 
       // 转换为数字
       const num = parseInt(secret, 10);
-      const days = timestamp / 86400;
+      const days = Math.floor(timestamp / 86400);
 
       // 过程
       const arrCode = [

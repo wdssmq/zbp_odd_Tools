@@ -160,6 +160,7 @@ $(function () {
         ImgPuzzle.imgInfo.width = width;
         ImgPuzzle.imgInfo.height = height;
       };
+      // 将图像数据赋值给 img.src
       img.src = ImgPuzzle.imgInfo.data = reader.result;
       // 将图像数据作为背景设置到 div 元素中进行预览
       $view.css("background-image", `url(${reader.result})`);

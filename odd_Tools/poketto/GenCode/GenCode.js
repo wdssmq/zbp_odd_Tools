@@ -4,14 +4,13 @@ $(function () {
     $(this).focus().select();
   });
 
-  // 默认点击事件
-  $("#GenCode-Btn").click(function () {
+  // 封装生成函数
+  const fnGenCode = () => {
     const secret = $("#GenCode-Num").val();
     const cycle = $("#GenCode-Cycle").val();
     GenCode._init(secret, cycle);
     const { password } = GenCode._xnxfTotp();
     $("#GenCode-Out-01").val(password);
-
     // const begin = parseInt(secret);
     // const end = begin + 100;
     // for (let i = begin; i < end; i++) {
@@ -22,8 +21,22 @@ $(function () {
     //   console.log({ i, password }, "\n");
     // }
     // $("#GenCode-Num").val(end);
+  }
 
+  // 默认点击事件
+  $("#GenCode-Save").click(() => {
+    fnGenCode();
+    GenCode._saveHis();
   });
+
+  // 自动触发
+  $("#GenCode-Num, #GenCode-Cycle").on("input", fnGenCode)
+
+  // 删除历史
+  $("#GenCode-Del").click(function () {
+    lsObj.setItem("GenCode-History", []);
+    window.location.reload();
+  })
 
   // -----------------
 
@@ -36,6 +49,10 @@ $(function () {
     cycle: 30,
     // 周期长度（以秒为单位）
     period: 86400,
+    // 生成的密码
+    password: null,
+    // 历史
+    history: [],
     err: {
       code: 0,
       msg: "",
@@ -52,6 +69,10 @@ $(function () {
       GenCode._updatePeriod();
     },
     _buildRlt(obj = {}) {
+      // 判断 obj 是否有 password 属性
+      if (obj.password) {
+        GenCode.password = obj.password
+      }
       return Object.assign({ err: GenCode.err }, obj);
     },
     _err(code = 0) {
@@ -79,33 +100,6 @@ $(function () {
     _updatePeriod() {
       GenCode.period = GenCode.days * 86400;
     },
-    // // 一个基于 AI 代码的 TOTP 算法
-    // _aiTotp() {
-    //   // 检查密钥
-    //   if (!GenCode._checkSecret()) {
-    //     return GenCode._buildRlt({ password: GenCode.err.msg });
-    //   }
-    //   // 初始值
-    //   const { timestamp, secret, period } = GenCode;
-    //   const counter = Math.floor(timestamp / period); // 计数器取整数部分
-    //   // 转换为数字
-    //   let num = parseInt(secret);
-    //   // 将密钥和计数器相加得到一个大数
-    //   // num += counter;
-    //   // 这一步我修改了一下，感觉还是不太能用
-    //   num += counter + secret.toString();
-    //   // 对这个大数进行一些操作以获取哈希值
-    //   num *= num;
-    //   num /= (counter + 1) * secret;
-    //   // 获取前 4 位字符并将其映射到 A-Z 之间的 ASCII 码
-    //   let password = "";
-    //   for (let i = 0; i < 4; i++) {
-    //     let index = ((num >> (i * 8)) & 255) % 26 + 65;
-    //     password += String.fromCharCode(index);
-    //   }
-    //   // 返回结果
-    //   return GenCode._buildRlt({ password });
-    // },
     // 一个我自己写的 TOTP 函数
     _xnxfTotp() {
       // 检查密钥
@@ -149,8 +143,28 @@ $(function () {
       return GenCode._buildRlt({
         password: [arrCodeRlt.join("").toUpperCase(), arrArgs[2]].join(" - ")
       });
+    },
+    _saveHis() {
+      const { secret, cycle, password, history } = GenCode;
+      // 保存历史数据到 localStorage
+      if (GenCode.err.code === 0 && JSON.stringify(history).indexOf(password) === -1) {
+        history.push({ secret, cycle, password });
+        lsObj.setItem("GenCode-History", history);
+      }
+      GenCode._loadHis(history);
+    },
+    _loadHis(def = []) {
+      $("#GenCode-History").empty();
+      GenCode.history = lsObj.getItem("GenCode-History", def);
+      GenCode.history.forEach((item) => {
+        const { secret, cycle, password } = item;
+        const html = `<p>${secret}, ${cycle}, ${password}`;
+        $("#GenCode-History").prepend(html)
+      });
     }
     // -----
   };
+
+  GenCode._loadHis();
 
 });

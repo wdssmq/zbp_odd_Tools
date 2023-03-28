@@ -35,7 +35,7 @@
               <div class="is-flex is-align-items-center">
                 <div class="control">
                   <div class="field">
-                    <div class="control"><input id="GenCode-Num" name="GenCode-Num" class="input select" type="text" placeholder="输入一个数字" value=""></div>
+                    <div class="control"><input id="GenCode-Num" name="GenCode-Num" class="input select" type="number" placeholder="输入一个数字" value="" min="0"></div>
                     <!-- <div class="control"><label for="GenCode-Num" class="label button is-static">记忆码</label></div> -->
                   </div>
                 </div>
@@ -82,12 +82,19 @@
             <div class="field-body">
               <div class="field">
                 <div class="control">
-                  <button id="GenCode-Btn" class="button is-info">
-                    生成
+                  <button id="GenCode-Save" class="button is-info">
+                    保存
+                  </button>
+                  <button id="GenCode-Del" class="button is-info">
+                    删除历史
                   </button>
                 </div>
+                <hr>
+                <div id="GenCode-History">
+
+                </div>
+                <hr>
                 <div>
-                  <hr>
                   <div class="page-section-header hr-bottom">
                     <h4 class="ti">说明：</h4>
                   </div>
@@ -110,8 +117,7 @@
     </div><!-- / .container -->
   </section>
   {template:-plugin-footer}
-  <!-- 一键复制 -->
-  <!-- <script src="https://cdn.bootcss.com/clipboard.js/2.0.4/clipboard.min.js"></script> -->
+  <script src="{$host}zb_users/plugin/odd_Tools/lib/base.js"></script>
 </body>
 
 </html>

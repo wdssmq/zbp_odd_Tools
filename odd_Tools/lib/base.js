@@ -1,4 +1,5 @@
 // localStorage 封装
+// eslint-disable-next-line no-unused-vars
 const lsObj = {
   setItem: function (key, value) {
     localStorage.setItem(key, JSON.stringify(value));

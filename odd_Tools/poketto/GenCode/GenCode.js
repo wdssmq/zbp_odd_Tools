@@ -1,3 +1,5 @@
+/* global lsObj */
+
 $(function () {
   // 自动选中监听
   $("input.select, textarea.auto-select").mouseenter(function () {
@@ -21,7 +23,7 @@ $(function () {
     //   console.log({ i, password }, "\n");
     // }
     // $("#GenCode-Num").val(end);
-  }
+  };
 
   // 默认点击事件
   $("#GenCode-Save").click(() => {
@@ -30,13 +32,13 @@ $(function () {
   });
 
   // 自动触发
-  $("#GenCode-Num, #GenCode-Cycle").on("input", fnGenCode)
+  $("#GenCode-Num, #GenCode-Cycle").on("input", fnGenCode);
 
   // 删除历史
   $("#GenCode-Del").click(function () {
     lsObj.setItem("GenCode-History", []);
     window.location.reload();
-  })
+  });
 
   // -----------------
 
@@ -74,7 +76,7 @@ $(function () {
     _buildRlt(obj = {}) {
       // 判断 obj 是否有 password 属性
       if (obj.password) {
-        GenCode.password = obj.password
+        GenCode.password = obj.password;
       }
       return Object.assign({ err: GenCode.err }, obj);
     },
@@ -115,7 +117,7 @@ $(function () {
       const days = ts_d;
       const cycle = period_d;
       // 第几个周期
-      const _counter = (adjDays) => Math.floor(adjDays / cycle);
+      const _counter = adjDays => Math.floor(adjDays / cycle);
       // 剩余天数
       const remain = cycle - (num + days) % cycle;
 
@@ -146,7 +148,7 @@ $(function () {
       }
       // console.log("_genCode", { arrCode, strCode, lenCode, arrArgs, arrCodeRlt });
       return GenCode._buildRlt({
-        password: [arrCodeRlt.join("").toUpperCase(), remain].join(" - ")
+        password: [arrCodeRlt.join("").toUpperCase(), remain].join(" - "),
       });
     },
     _saveHis() {
@@ -164,9 +166,9 @@ $(function () {
       GenCode.history.forEach((item) => {
         const { secret, cycle, password } = item;
         const html = `<p>${secret}, ${cycle}, ${password}`;
-        $("#GenCode-History").prepend(html)
+        $("#GenCode-History").prepend(html);
       });
-    }
+    },
     // -----
   };
 

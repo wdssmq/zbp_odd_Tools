@@ -41,14 +41,16 @@ $(function () {
   // -----------------
 
   const GenCode = {
-    // 当前时间戳
-    timestamp: Math.floor(Date.now() / 1000),
+    // 当前时间戳秒数
+    ts_s: Math.floor(Date.now() / 1000),
+    // 时间戳转换成天数
+    ts_d: 1234,
     // 密钥，只有数字
     secret: "123456",
-    // 周期天数据
-    cycle: 30,
+    // 周期天数
+    period_d: 1,
     // 周期长度（以秒为单位）
-    period: 86400,
+    period_s: 864000,
     // 生成的密码
     password: null,
     // 历史
@@ -65,8 +67,9 @@ $(function () {
     },
     _init(secret, cycle) {
       GenCode.secret = secret;
-      GenCode.cycle = cycle;
-      GenCode._updatePeriod();
+      GenCode.period_d = cycle;
+      GenCode.period_s = cycle * 86400;
+      GenCode.ts_d = Math.floor(GenCode.ts_s / 86400);
     },
     _buildRlt(obj = {}) {
       // 判断 obj 是否有 password 属性
@@ -93,12 +96,9 @@ $(function () {
       //   return false;
       // }
       GenCode._err(0);
-      GenCode.cycle = parseInt(GenCode.cycle);
+      GenCode.period_d = parseInt(GenCode.period_d);
+      GenCode.secret = parseInt(GenCode.secret);
       return true;
-    },
-    // 更新 period
-    _updatePeriod() {
-      GenCode.period = GenCode.days * 86400;
     },
     // 一个我自己写的 TOTP 函数
     _xnxfTotp() {
@@ -108,30 +108,35 @@ $(function () {
       }
 
       // 初始值
-      const { timestamp, secret, cycle } = GenCode;
+      const { secret, period_d, ts_d } = GenCode;
 
-      // 转换为数字
-      const num = parseInt(secret, 10);
-      const days = Math.floor(timestamp / 86400);
+      // 变量赋值
+      const num = secret;
+      const days = ts_d;
+      const cycle = period_d;
+      // 第几个周期
+      const _counter = (adjDays) => Math.floor(adjDays / cycle);
+      // 剩余天数
+      const remain = cycle - (num + days) % cycle;
 
       // 过程
       const arrCode = [
         num + cycle,
-        Math.floor((num + days) / cycle),
+        _counter(num + days),
       ];
       const strCode = arrCode.join("");
       const lenCode = strCode.length;
       const arrArgs = [
         Math.floor(lenCode / 4),
         lenCode % 4,
-        // 剩余天数
-        parseInt(cycle - (num + days) % cycle),
       ];
+      // console.log(133, "|", JSON.stringify({ arrCode, strCode, lenCode, arrArgs }));
+      // console.log(strCode);
       const arrCodeRlt = [];
       let i = 0;
       while (arrCodeRlt.length < 4) {
         const strNum = strCode.substring(i, i + arrArgs[0] + arrArgs[1]);
-        console.log(strCode, strNum);
+        // console.log(134, "|", strCode, strNum);
         const strChar = ((input) => {
           const intNum = parseInt(input);
           return (intNum % 26 + 10).toString(36);
@@ -141,7 +146,7 @@ $(function () {
       }
       // console.log("_genCode", { arrCode, strCode, lenCode, arrArgs, arrCodeRlt });
       return GenCode._buildRlt({
-        password: [arrCodeRlt.join("").toUpperCase(), arrArgs[2]].join(" - ")
+        password: [arrCodeRlt.join("").toUpperCase(), remain].join(" - ")
       });
     },
     _saveHis() {

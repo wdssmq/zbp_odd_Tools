@@ -36,3 +36,27 @@ blockquote {
   font-size: 17.5px;
   border-left: 5px solid #eee;
 }
+
+/* ----- */
+
+.mz-helper-bb1st {
+  border-bottom: 1px solid transparent;
+}
+
+.mz-helper-lh1 {
+  line-height: 1;
+}
+
+.mz-helper-bbn {
+  border-bottom: none;
+}
+
+/* 折叠效果 */
+
+.collapse-content {
+  display: none;
+}
+
+.collapse-content.is-active {
+  display: block;
+}

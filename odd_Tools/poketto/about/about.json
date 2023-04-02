@@ -41,7 +41,7 @@
     },
     {
       "label": "Feedly",
-      "msg": "Feedly",
+      "msg": "wdssmq",
       "logo": "feedly",
       "color": "2bb24c",
       "query": "$.data.totalSubs",
@@ -63,7 +63,7 @@
     },
     {
       "label": "知乎",
-      "msg": "-uid-",
+      "msg": "沉冰浮水",
       "color": "0084ff",
       "logo": "zhihu",
       "query": "count",

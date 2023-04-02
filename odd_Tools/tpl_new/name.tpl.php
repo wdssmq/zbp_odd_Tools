@@ -77,6 +77,7 @@
   {template:-plugin-footer}
   <!-- 一键复制 -->
   <!-- <script src="https://cdn.bootcss.com/clipboard.js/2.0.4/clipboard.min.js"></script> -->
+  <!-- <script src="{$host}zb_users/plugin/odd_Tools/lib/base.js"></script> -->
 </body>
 
 </html>

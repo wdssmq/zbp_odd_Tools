@@ -1,0 +1,15 @@
+.list-item-title {
+  margin-bottom: 3px;
+}
+
+.odd-rlt-list input{
+  margin-bottom: 1.1em;
+}
+
+.button.is-small {
+  /* font-size: 12px; */
+  /* padding: 0; */
+  line-height: 1;
+  height: auto;
+}
+

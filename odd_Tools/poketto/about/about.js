@@ -1,4 +1,9 @@
 $(function () {
+  // 自动选中监听，包括未来新增的元素
+  $(document).on("mouseenter", "input.select, textarea.auto-select", function () {
+    $(this).focus().select();
+  });
+
   $(".odd-submit")
     .click(function () {
       const jsonUrl = $("#jsonUrl").val();
@@ -11,29 +16,68 @@ $(function () {
     $.getJSON(jsonUrl, function (data) {
       const arrBadge = fnGenRlt(data);
       // console.log(arrBadge);
-      const html = fnBuildHTML(arrBadge);
+      const { html, list } = fnBuildHTML(arrBadge);
       $(".odd-rlt").val(html);
       $(".odd-rlt-view").html(html);
+      $(".odd-rlt-list").html(list);
+      fnCollapse(".collapse-btn", ".collapse-content");
       // console.log(data);
     });
   }
 
+  // 转义 HTML
+  function fnEscapeHTML(html) {
+    return html.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+  };
+
   function fnBuildHTML(arrBadge) {
-    let strRlt = "";
-    strRlt += "<p>\n";
-    arrBadge.forEach((item) => {
+    const tplListItem = `<div>
+      <columns class="is-flex is-align-items-center list-item-title">
+        <span class="column">#view#</span>
+        <span class="column collapse-btn button is-small" data-target="#list-item-#index#">展开 #index#</span>
+        <span class="column"></span>
+      </columns>
+      <div class="collapse-content" id="list-item-#index#">
+        <p class="control">
+          <input class="input select is-small" type="text" value="#value#" />
+        </p>
+        <!-- markdown -->
+        <p class="control">
+          <input class="input select is-small" type="text" value="#markdown#" />
+        </p>
+      </div>
+    </div>`;
+    let rltHTML = "", rltList = "";
+    rltHTML += "<p>\n";
+    arrBadge.forEach((item,i) => {
       const { img, alt: curAlt, url: curUrl } = item;
       const curImg = `<img src="${img}" alt="${curAlt}" />`;
-      strRlt += `<!-- ${curAlt} -->\n`;
+      rltHTML += `<!-- ${curAlt} -->\n`;
+      let curView = "";
       if (curUrl) {
-        strRlt += `<a target="_blank" title="${curAlt}" href="${curUrl}">${curImg}</a>`;
+        curView = `<a target="_blank" title="${curAlt}" href="${curUrl}">${curImg}</a>`;
       } else {
-        strRlt += curImg;
+        curView = curImg;
       }
-      strRlt += "\n";
+      // console.log(curView);
+      rltHTML += curView;
+      rltHTML += "\n";
+      // 构造单个图标查看
+      const curImgMD = `![${curAlt}](${img})`;
+      const curMD = curUrl ? `[${curImgMD}](${curUrl})` : curImgMD;
+      const curListItem = tplListItem
+        .replace(/#index#/g, i)
+        .replace(/#view#/g, curView)
+        .replace(/#value#/g, fnEscapeHTML(curView))
+        .replace(/#markdown#/g, `${curMD}`);
+      rltList += curListItem;
+      // console.log(curListItem);
     });
-    strRlt += "</p>";
-    return strRlt;
+    rltHTML += "</p>";
+    return {
+      html: rltHTML,
+      list: rltList,
+    };
   }
 
 

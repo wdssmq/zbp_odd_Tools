@@ -1,4 +1,4 @@
-<?php die();?>
+<?php die(); ?>
 <!DOCTYPE html>
 <html lang="{$language}">
 
@@ -36,31 +36,42 @@
               </div>
             </div>
           </div><!-- / .field -->
+
           <div class="field is-horizontal">
             <div class="field-label is-normal">
-              <label class="label">结果</label>
+              预览效果
+            </div>
+            <div class="field-body">
+              <div class="odd-rlt-view"></div>
+            </div>
+          </div>
+
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              列表
+            </div>
+            <div class="field-body">
+              <div class="odd-rlt-list field"></div>
+            </div>
+          </div>
+
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label" for="about-HTML">HTML</label>
             </div>
             <div class="field-body">
               <div class="field">
                 <div class="control">
-                  <i class="readonly"></i>
-                  <textarea spellcheck="false" rows="17" class="odd-rlt textarea" placeholder="生成内容"></textarea>
+                  <details>
+                    <summary>HTML 代码</summary>
+                    <i class="readonly"></i>
+                    <textarea name="about-HTML" spellcheck="false" rows="17" class="odd-rlt textarea" placeholder="生成内容"></textarea>
+                  </details>
                 </div>
               </div>
             </div>
           </div><!-- / .field -->
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label"></label>
-            </div>
-            <div class="field-body">
-              <details open="true">
-                <summary>预览</summary>
-                <br>
-                <div class="odd-rlt-view"></div>
-              </details>
-            </div>
-          </div>
+
           <div class="field is-horizontal">
             <div class="field-label">
               <!-- Left empty for spacing -->
@@ -77,12 +88,16 @@
           </div><!-- / .field -->
         </div>
         <div class="column">
+          <h3>相关推荐：</h3>
+          <p>Documentation - substats</p>
+          <p><a href="https://substats.swo.moe/" target="_blank" title="Documentation - substats">https://substats.swo.moe/</a></p>
           {template:-plugin-sidebar}
         </div>
       </div><!-- / .columns -->
     </div><!-- / .container -->
   </section>
   {template:-plugin-footer}
+  <script src="{$host}zb_users/plugin/odd_Tools/lib/base.js"></script>
 </body>
 
 </html>

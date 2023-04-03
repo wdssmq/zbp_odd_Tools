@@ -51,7 +51,7 @@ $(function () {
     </div>`;
     let rltHTML = "", rltList = "";
     rltHTML += "<p>\n";
-    arrBadge.forEach((item,i) => {
+    arrBadge.forEach((item, i) => {
       const { img, alt: curAlt, url: curUrl } = item;
       const curImg = `<img src="${img}" alt="${curAlt}" />`;
       rltHTML += `<!-- ${curAlt} -->\n`;
@@ -93,7 +93,13 @@ $(function () {
         for (const key in item) {
           if (Object.hasOwnProperty.call(item, key)) {
             const curEl = item[key];
-            curImg = curImg.replace(`-${key}-`, encodeURIComponent(curEl));
+            const curElEncode = encodeURIComponent(curEl);
+            curImg = curImg.replace(`-${key}-`, curElEncode);
+            // if (item.label === "FeedsPub") {
+            //   console.log(key, curImg);
+            // }
+            const curElEncode2 = encodeURIComponent(curElEncode);
+            curImg = curImg.replace(`-%25${key}%25-`, curElEncode2);
           }
         }
         // curImg = curImg.replace(/-[^-]+-/g, "");

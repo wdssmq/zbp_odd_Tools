@@ -13,6 +13,17 @@
       "feed": "https://www.wdssmq.com/feed.php"
     },
     {
+      "label": "FeedsPub",
+      "msg": "wdssmq",
+      "logo": "feedspub",
+      "color": "brightgreen",
+      "query": "count",
+      "url": "https://api.swo.moe/stats/feedspub/-%feed%-",
+      "imgBase": "https://img.shields.io/badge/dynamic/json?label=-label-&query=-query-&url=-url-&color=-color-&logo=-logo-&suffix=+subs&cacheSeconds=14400",
+      "urlBase": "https://feeds.pub/feed/-feed-",
+      "feed": "https://www.wdssmq.com/feed.php"
+    },
+    {
       "label": "Feed",
       "msg": "Inoreader",
       "color": "blue",

@@ -40,12 +40,12 @@
       "label": "爱发电",
       "msg": "@wdssmq",
       "color": "blueviolet",
-      "url": "https://afdian.net/@wdssmq"
+      "url": "https://afdian.net/a/wdssmq"
     },
     {
-      "label": "mastodon",
+      "label": "嘟特",
       "msg": "wdssmq",
-      "imgBase": "https://img.shields.io/mastodon/follow/-id-?domain=-domain-",
+      "imgBase": "https://img.shields.io/mastodon/follow/-id-?style=social&label=-label-&domain=-domain-",
       "id": 142218,
       "domain": "https://wxw.moe/",
       "url": "https://wxw.moe/@wdssmq"
@@ -82,6 +82,13 @@
       "imgBase": "https://img.shields.io/badge/dynamic/json?style=social&label=-label-&query=-query-&url=-url-&color=-color-&logo=-logo-",
       "urlBase": "https://afdian.net/a/-uid-",
       "uid": "wdssmq"
+    },
+    {
+      "label": "GitHub",
+      "msg": "wdssmq",
+      "imgBase":"https://img.shields.io/github/followers/wdssmq?style=social&label=-label-",
+      "urlBase":"https://github.com/wdssmq.com",
+      "uid":"wdssmq"
     },
     {
       "label": "QQ",

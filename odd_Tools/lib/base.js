@@ -25,11 +25,11 @@ const fnCollapse = function (btn, content) {
     $btn.dataset.group = groupID;
     $btn.addEventListener("click", function () {
       const target = this.dataset.target;
-      console.log(target);
+      // console.log(target);
       // 关闭其他面板
       $$content.forEach(($content) => {
         if (target.indexOf($content.id) === -1 && $content.dataset.group === groupID) {
-          console.log($content.id);
+          // console.log($content.id);
           $content.classList.remove("is-active");
         }
       });

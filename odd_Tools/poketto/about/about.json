@@ -44,11 +44,11 @@
     },
     {
       "label": "嘟特",
-      "msg": "wdssmq",
+      "msg": "@wdssmq",
       "imgBase": "https://img.shields.io/mastodon/follow/-id-?style=social&label=-label-&domain=-domain-",
       "id": 142218,
       "domain": "https://wxw.moe/",
-      "url": "https://wxw.moe/@wdssmq"
+      "url": "https://wxw.moe/users/wdssmq"
     },
     {
       "label": "Feedly",

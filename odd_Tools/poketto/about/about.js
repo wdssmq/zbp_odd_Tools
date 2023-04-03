@@ -66,12 +66,12 @@ $(function () {
       rltHTML += "\n";
       // 构造单个图标查看
       const curImgMD = `![${curAlt}](${img})`;
-      const curMD = curUrl ? `[${curImgMD}](${curUrl})` : curImgMD;
+      const curMD = curUrl ? `[${curImgMD}](${curUrl} "${curAlt}")` : curImgMD;
       const curListItem = tplListItem
         .replace(/#index#/g, i)
         .replace(/#view#/g, curView)
         .replace(/#value#/g, fnEscapeHTML(curView))
-        .replace(/#markdown#/g, `${curMD}`);
+        .replace(/#markdown#/g, fnEscapeHTML(curMD));
       rltList += curListItem;
       // console.log(curListItem);
     });

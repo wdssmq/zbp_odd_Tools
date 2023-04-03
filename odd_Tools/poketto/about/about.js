@@ -1,3 +1,5 @@
+/* global fnCollapse */
+
 $(function () {
   // 自动选中监听，包括未来新增的元素
   $(document).on("mouseenter", "input.select, textarea.auto-select", function () {
@@ -28,7 +30,7 @@ $(function () {
   // 转义 HTML
   function fnEscapeHTML(html) {
     return html.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-  };
+  }
 
   function fnBuildHTML(arrBadge) {
     const tplListItem = `<div>

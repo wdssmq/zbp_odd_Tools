@@ -14,6 +14,7 @@ const lsObj = {
 };
 
 // 面板折叠封装
+// eslint-disable-next-line no-unused-vars
 const fnCollapse = function (btn, content) {
   // 随机生成一个 group id，不用 substr
   const groupID = Math.random().toString(36).slice(2);
@@ -39,4 +40,4 @@ const fnCollapse = function (btn, content) {
   $$content.forEach(($content) => {
     $content.dataset.group = groupID;
   });
-}
+};

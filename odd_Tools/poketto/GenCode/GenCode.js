@@ -6,29 +6,54 @@ $(function () {
     $(this).focus().select();
   });
 
+  // 封装一个函数，清空元素然后解析新的历史内容
+  const fnViewHis = () => {
+    GenCode._loadHis();
+    const $hisTory = $("#GenCode-History");
+    $hisTory.empty();
+    const { history } = GenCode;
+    history.forEach((item, index) => {
+      const { secret, cycle, password, remain } = item;
+      const str = `${secret} - ${cycle} - ${password} - ${remain}`;
+      $hisTory.append(`<p>${str}</p>`);
+    });
+  };
+
   // 封装生成函数
-  const fnGenCode = () => {
+  const fnGenCode = (e = null) => {
     const secret = $("#GenCode-Num").val();
     const cycle = $("#GenCode-Cycle").val();
     GenCode._init(secret, cycle);
-    const { password } = GenCode._xnxfTotp();
-    $("#GenCode-Out-01").val(password);
-    // const begin = parseInt(secret);
-    // const end = begin + 100;
-    // for (let i = begin; i < end; i++) {
-    //   const secret = i;
-    //   // const days = $("#GenCode-Days").val();
-    //   GenCode._init(secret, 30);
-    //   const { password } = GenCode._xnxfTotp();
-    //   console.log({ i, password }, "\n");
-    // }
-    // $("#GenCode-Num").val(end);
+    const { password, remain } = GenCode._xnxfTotp();
+    $("#GenCode-Out-01").val(`${password} - ${remain}`);
+    // 判断是否是事件触发及触发的元素
+    if ("GenCode-Num" == e?.target?.id) {
+      // 记录输入的内容到 data-secret
+      $("#GenCode-Num").attr("data-secret", secret);
+      // 指定时间后，如果 secret 和 data-secret 相等则调用保存函数
+      setTimeout(() => {
+        // 判断 secret 和 data-secret 是否相等
+        if (secret != $("#GenCode-Num").attr("data-secret")) {
+          return;
+        }
+        // 尝试调用保存历史
+        fnSaveHis();
+      }, 1000);
+    } else {
+      // 直接调用保存函数
+      fnSaveHis();
+    }
+  };
+
+  // 封装一个函数，保存历史并更新 view
+  const fnSaveHis = ($ele = null) => {
+    GenCode._saveHis();
+    fnViewHis();
   };
 
   // 默认点击事件
   $("#GenCode-Save").click(() => {
     fnGenCode();
-    GenCode._saveHis();
   });
 
   // 自动触发
@@ -176,6 +201,6 @@ $(function () {
     // -----
   };
 
-  GenCode._loadHis();
+  fnViewHis();
 
 });

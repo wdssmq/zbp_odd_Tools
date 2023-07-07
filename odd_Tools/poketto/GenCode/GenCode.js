@@ -152,7 +152,7 @@ $(function () {
       });
     },
     _saveHis() {
-      const { secret, cycle, password, history } = GenCode;
+      const { secret, period_d: cycle, password, history } = GenCode;
       // 保存历史数据到 localStorage
       if (GenCode.err.code === 0 && JSON.stringify(history).indexOf(password) === -1) {
         history.push({ secret, cycle, password });

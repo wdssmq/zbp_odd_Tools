@@ -72,6 +72,7 @@ $(function () {
       GenCode.period_d = cycle;
       GenCode.period_s = cycle * 86400;
       GenCode.ts_d = Math.floor(GenCode.ts_s / 86400);
+      return GenCode;
     },
     _buildRlt(obj = {}) {
       // 判断 obj 是否有 password 属性
@@ -148,7 +149,8 @@ $(function () {
       }
       // console.log("_genCode", { arrCode, strCode, lenCode, arrArgs, arrCodeRlt });
       return GenCode._buildRlt({
-        password: [arrCodeRlt.join("").toUpperCase(), remain].join(" - "),
+        password: arrCodeRlt.join("").toUpperCase(),
+        remain,
       });
     },
     _saveHis() {
@@ -158,16 +160,18 @@ $(function () {
         history.push({ secret, cycle, password });
         lsObj.setItem("GenCode-History", history);
       }
-      GenCode._loadHis(history);
     },
     _loadHis(def = []) {
-      $("#GenCode-History").empty();
       GenCode.history = lsObj.getItem("GenCode-History", def);
-      GenCode.history.forEach((item) => {
-        const { secret, cycle, password } = item;
-        const html = `<p>${secret}, ${cycle}, ${password}`;
-        $("#GenCode-History").prepend(html);
+      GenCode.history = GenCode.history.map((item) => {
+        const { secret, cycle } = item;
+        // 使用 secret 和 cycle 重新生成 password 和 remain
+        const { password, remain } = GenCode._init(secret, cycle)._xnxfTotp();
+        return { secret, cycle, password, remain };
       });
+      // 按 remain 值降序
+      GenCode.history = GenCode.history.sort((a, b) => b.remain - a.remain);
+      // console.log(GenCode.history);
     },
     // -----
   };

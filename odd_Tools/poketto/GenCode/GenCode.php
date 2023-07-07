@@ -82,8 +82,8 @@
             <div class="field-body">
               <div class="field">
                 <div class="control">
-                  <button id="GenCode-Save" class="button is-info">
-                    保存
+                  <button id="GenCode-Auto" class="button is-info">
+                    批量生成
                   </button>
                   <button id="GenCode-Del" class="button is-info">
                     删除历史

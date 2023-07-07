@@ -8,15 +8,26 @@ $(function () {
 
   // 封装一个函数，清空元素然后解析新的历史内容
   const fnViewHis = () => {
-    GenCode._loadHis();
+    // 清空元素
     const $hisTory = $("#GenCode-History");
     $hisTory.empty();
+    // 创建一个 table
+    const $table = $("<table class=\"table is-bordered\"></table>");
+    // 重新解析
+    GenCode._loadHis();
     const { history } = GenCode;
     history.forEach((item, index) => {
       const { secret, cycle, password, remain } = item;
-      const str = `${secret} - ${cycle} - ${password} - ${remain}`;
-      $hisTory.append(`<p>${str}</p>`);
+      const $tr = $("<tr></tr>");
+      // $tr.append(`<td>${index + 1}</td>`);
+      $tr.append(`<td>${secret}</td>`);
+      $tr.append(`<td>${cycle}</td>`);
+      // $tr.append(`<td class="is-family-monospace">${password}</td>`);
+      $tr.append(`<td>${password}</td>`);
+      $tr.append(`<td>${remain}</td>`);
+      $table.append($tr);
     });
+    $hisTory.append($table);
   };
 
   // 封装生成函数
@@ -52,8 +63,22 @@ $(function () {
   };
 
   // 默认点击事件
-  $("#GenCode-Save").click(() => {
-    fnGenCode();
+  $("#GenCode-Auto").click(() => {
+    // const secret = $("#GenCode-Num").val();
+    // 记录当前的 cycle
+    const cycle = $("#GenCode-Cycle").val();
+    // 遍历所有 GenCode-Cycle 选项的值
+    $("#GenCode-Cycle option").each(function () {
+      // 选中当前选项
+      $(this).prop("selected", true);
+      // 触发生成密码
+      fnGenCode();
+    });
+    // 恢复 cycle
+    setTimeout(() => {
+      $("#GenCode-Cycle").val(cycle);
+      fnGenCode();
+    }, 300);
   });
 
   // 自动触发

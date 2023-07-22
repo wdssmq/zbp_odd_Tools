@@ -1,16 +1,54 @@
 {
   "shields": [
     {
-      "label": "",
-      "msg": "SEO 是啥联盟",
-      "color": "yellowgreen"
-    },
-    {
       "label": "Feed",
       "msg": "FeedsPub",
       "color": "brightgreen",
       "urlBase": "https://feeds.pub/feed/-feed-",
-      "feed": "https://www.wdssmq.com/feed.php"
+      "feed": "https://www.wdssmq.com/feed.php",
+      "serNum": -1
+    },
+    {
+      "label": "Feed",
+      "msg": "feed.wdssmq.com",
+      "color": "yellow",
+      "url": "https://feed.wdssmq.com",
+      "serNum": -1
+    },
+    {
+      "label": "QQ",
+      "msg": "349467624",
+      "color": "0086F9",
+      "url": "https://wpa.qq.com/msgrd?v=3&uin=349467624&site=qq&menu=yes",
+      "serNum": -1
+    },
+    {
+      "label": "",
+      "msg": "SEO 是啥联盟",
+      "color": "yellowgreen",
+      "serNum": 1
+    },
+    {
+      "label": "QQ",
+      "msg": "我的咸鱼心",
+      "color": "0086F9",
+      "url": "https://jq.qq.com/?_wv=1027&k=1Vdo2rUM",
+      "serNum": 2
+    },
+    {
+      "label": "爱发电",
+      "msg": "@wdssmq",
+      "color": "blueviolet",
+      "url": "https://afdian.net/a/wdssmq",
+      "serNum": 3
+    },
+    {
+      "label": "Feed",
+      "msg": "Inoreader",
+      "color": "blue",
+      "urlBase": "https://www.innoreader.com/feed/-feed-",
+      "feed": "https://www.wdssmq.com/feed.php",
+      "serNum": 4
     },
     {
       "label": "FeedsPub",
@@ -21,34 +59,9 @@
       "queryUrl": "https://api.swo.moe/stats/feedspub/-%feed%-",
       "imgBase": "https://img.shields.io/badge/dynamic/json?label=-label-&query=-query-&url=-queryUrl-&color=-color-&logo=-logo-&suffix=+subs&cacheSeconds=14400",
       "urlBase": "https://feeds.pub/feed/-feed-",
-      "feed": "https://www.wdssmq.com/feed.php"
-    },
-    {
-      "label": "Feed",
-      "msg": "Inoreader",
-      "color": "blue",
-      "urlBase": "https://www.innoreader.com/feed/-feed-",
-      "feed": "https://www.wdssmq.com/feed.php"
-    },
-    {
-      "label": "Feed",
-      "msg": "feed.wdssmq.com",
-      "color": "yellow",
-      "url": "https://feed.wdssmq.com"
-    },
-    {
-      "label": "爱发电",
-      "msg": "@wdssmq",
-      "color": "blueviolet",
-      "url": "https://afdian.net/a/wdssmq"
-    },
-    {
-      "label": "嘟特",
-      "msg": "@wdssmq",
-      "imgBase": "https://img.shields.io/mastodon/follow/-id-?style=social&label=-label-&domain=-domain-",
-      "id": 142218,
-      "domain": "https://wxw.moe/",
-      "url": "https://wxw.moe/users/wdssmq"
+      "feed": "https://www.wdssmq.com/feed.php",
+      "serNum": 5,
+      "br": true
     },
     {
       "label": "Feedly",
@@ -59,7 +72,17 @@
       "url": "https://api.spencerwoo.com/substats/?source=feedly&queryKey=-feed-",
       "imgBase": "https://img.shields.io/badge/dynamic/json?style=social&label=-label-&query=-query-&url=-url-&color=-color-&logo=-logo-",
       "urlBase": "https://feedly.com/i/subscription/feed%2F-feed-",
-      "feed": "https://www.wdssmq.com/feed.php"
+      "feed": "https://www.wdssmq.com/feed.php",
+      "serNum": 6
+    },
+    {
+      "label": "嘟特",
+      "msg": "@wdssmq",
+      "imgBase": "https://img.shields.io/mastodon/follow/-id-?style=social&label=-label-&domain=-domain-",
+      "id": 142218,
+      "domain": "https://wxw.moe/",
+      "url": "https://wxw.moe/users/wdssmq",
+      "serNum": 7
     },
     {
       "label": "哔哩哔哩",
@@ -70,7 +93,8 @@
       "url": "https://api.swo.moe/stats/bilibili/-uid-",
       "imgBase": "https://img.shields.io/badge/dynamic/json?style=social&label=-label-&query=-query-&url=-url-&color=-color-&logo=-logo-",
       "urlBase": "https://space.bilibili.com/-uid-",
-      "uid": "44744006"
+      "uid": "44744006",
+      "serNum": 8
     },
     {
       "label": "知乎",
@@ -81,26 +105,16 @@
       "url": "https://api.swo.moe/stats/zhihu/-uid-",
       "imgBase": "https://img.shields.io/badge/dynamic/json?style=social&label=-label-&query=-query-&url=-url-&color=-color-&logo=-logo-",
       "urlBase": "https://afdian.net/a/-uid-",
-      "uid": "wdssmq"
+      "uid": "wdssmq",
+      "serNum": 9
     },
     {
       "label": "GitHub",
       "msg": "wdssmq",
-      "imgBase":"https://img.shields.io/github/followers/wdssmq?style=social&label=-label-",
-      "urlBase":"https://github.com/-uid-",
-      "uid":"wdssmq"
-    },
-    {
-      "label": "QQ",
-      "msg": "349467624",
-      "color": "0086F9",
-      "url": "https://wpa.qq.com/msgrd?v=3&uin=349467624&site=qq&menu=yes"
-    },
-    {
-      "label": "QQ",
-      "msg": "我的咸鱼心",
-      "color": "0086F9",
-      "url": "https://jq.qq.com/?_wv=1027&k=1Vdo2rUM"
+      "imgBase": "https://img.shields.io/github/followers/wdssmq?style=social&label=-label-",
+      "urlBase": "https://github.com/-uid-",
+      "uid": "wdssmq",
+      "serNum": 10
     }
   ]
 }

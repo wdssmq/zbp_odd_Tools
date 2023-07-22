@@ -64,6 +64,9 @@ $(function () {
       // console.log(curView);
       rltHTML += curView;
       rltHTML += "\n";
+      if (item.br) {
+        rltHTML += "<br />\n";
+      }
       // 构造单个图标查看
       const curImgMD = `![${curAlt}](${img})`;
       const curMD = curUrl ? `[${curImgMD}](${curUrl} "${curAlt}")` : curImgMD;
@@ -85,11 +88,22 @@ $(function () {
 
   function fnGenRlt(data) {
     const dataRlt = [];
-    if (data.shields) {
-      data.shields.forEach((item) => {
-        // 徽章图片地址
-        const imgBase = "https://img.shields.io/badge/-label-|-msg-|-color-";
-        let curImg = item.imgBase ? item.imgBase : imgBase;
+    const { shields } = data;
+    if (shields) {
+      const imgBase = "https://img.shields.io/badge/-label-|-msg-|-color-";
+      // 根据 serNum 排序
+      shields.sort((a, b) => {
+        a.serNum = a.serNum || -1;
+        b.serNum = b.serNum || -1;
+        return a.serNum - b.serNum;
+      });
+      console.log(JSON.stringify(shields));
+      shields.forEach((item) => {
+        // 如果不存在 item.serNum 属性或者值小于等于 0，返回
+        if (!item.serNum || item.serNum <= 0) {
+          return;
+        }
+        let curImg = item.imgBase || imgBase;
         for (const key in item) {
           if (Object.hasOwnProperty.call(item, key)) {
             const curEl = item[key];
@@ -126,6 +140,7 @@ $(function () {
           alt: curAlt,
           img: curImg,
           url: curUrl,
+          br: item.br || false,
         };
         dataRlt.push(curRlt);
       });

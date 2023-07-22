@@ -18,8 +18,8 @@
       "logo": "feedspub",
       "color": "brightgreen",
       "query": "count",
-      "url": "https://api.swo.moe/stats/feedspub/-%feed%-",
-      "imgBase": "https://img.shields.io/badge/dynamic/json?label=-label-&query=-query-&url=-url-&color=-color-&logo=-logo-&suffix=+subs&cacheSeconds=14400",
+      "queryUrl": "https://api.swo.moe/stats/feedspub/-%feed%-",
+      "imgBase": "https://img.shields.io/badge/dynamic/json?label=-label-&query=-query-&url=-queryUrl-&color=-color-&logo=-logo-&suffix=+subs&cacheSeconds=14400",
       "urlBase": "https://feeds.pub/feed/-feed-",
       "feed": "https://www.wdssmq.com/feed.php"
     },

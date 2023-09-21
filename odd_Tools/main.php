@@ -53,12 +53,11 @@ require $blogpath . 'zb_system/admin/admin_top.php';
   <div class="SubMenu"></div>
   <div id="divMain2">
     <div class="content-box">
-      <ul class="content-box-tabs">
+      <ul class="content-box-tabs clearfix">
         <li><a href="#def" class="default-tab current">开始</a></li>
         <li><a href="#config">配置项</a></li>
-        <li><a href="#about" class="xnxf-about-btn tab-btn">关于</a></li>
+        <li><a href="#about" class="xnxf-about-btn tab-btn"><span>关于</span></a></li>
       </ul>
-      <div style="clear: both"></div>
       <div class="content-box-content">
         <div class="tab-content default-tab" id="def">
           <hr>

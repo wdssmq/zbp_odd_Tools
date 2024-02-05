@@ -1,8 +1,8 @@
 /* global lsObj */
 
-$(function () {
+$(function() {
   // 自动选中监听
-  $("input.select, textarea.auto-select").mouseenter(function () {
+  $("input.select, textarea.auto-select").mouseenter(function() {
     $(this).focus().select();
   });
 
@@ -35,25 +35,40 @@ $(function () {
     const secret = $("#GenCode-Num").val();
     const cycle = $("#GenCode-Cycle").val();
     GenCode._init(secret, cycle);
-    const { password, remain } = GenCode._xnxfTotp();
-    $("#GenCode-Out-01").val(`${password} - ${remain}`);
-    // 判断是否是事件触发及触发的元素
-    if ("GenCode-Num" == e?.target?.id) {
-      // 记录输入的内容到 data-secret
-      $("#GenCode-Num").attr("data-secret", secret);
-      // 指定时间后，如果 secret 和 data-secret 相等则调用保存函数
-      setTimeout(() => {
-        // 判断 secret 和 data-secret 是否相等
-        if (secret != $("#GenCode-Num").attr("data-secret")) {
-          return;
-        }
-        // 尝试调用保存历史
-        fnSaveHis();
-      }, 1000);
+    const { password, remain, err } = GenCode._xnxfTotp();
+
+    if (err.code === 0) {
+      $("#GenCode-Out-01").val(`${password} - ${remain}`);
     } else {
+      $("#GenCode-Out-01").val(err.msg);
+    }
+
+    // secret.length < 4 时不保存历史
+    if (secret.length < 4) {
+      return;
+    }
+
+    if (!e) {
       // 直接调用保存函数
       fnSaveHis();
+      return;
     }
+
+    // 触发事件的元素 id
+    // const tgtId = e?.target?.id;
+    const tgtVal = e?.target?.value;
+    const $tgt = $(e?.target);
+    // 缓存值到 data-val
+    $tgt.attr("data-val", tgtVal);
+
+    // 指定时间内没有变化则调用保存函数
+    setTimeout(() => {
+      if (tgtVal != $tgt.attr("data-val")) {
+        return;
+      }
+      // 尝试调用保存历史
+      fnSaveHis();
+    }, 1370);
   };
 
   // 封装一个函数，保存历史并更新 view
@@ -68,7 +83,7 @@ $(function () {
     // 记录当前的 cycle
     const cycle = $("#GenCode-Cycle").val();
     // 遍历所有 GenCode-Cycle 选项的值
-    $("#GenCode-Cycle option").each(function () {
+    $("#GenCode-Cycle option").each(function() {
       // 选中当前选项
       $(this).prop("selected", true);
       // 触发生成密码
@@ -82,10 +97,10 @@ $(function () {
   });
 
   // 自动触发
-  $("#GenCode-Num, #GenCode-Cycle").on("input", fnGenCode);
+  $("#GenCode-Num, #GenCode-Cycle, #GenCode-Out-01").on("input", fnGenCode);
 
   // 删除历史
-  $("#GenCode-Del").click(function () {
+  $("#GenCode-Del").click(function() {
     lsObj.setItem("GenCode-History", []);
     window.location.reload();
   });
@@ -125,11 +140,13 @@ $(function () {
       return GenCode;
     },
     _buildRlt(obj = {}) {
-      // 判断 obj 是否有 password 属性
-      if (obj.password) {
-        GenCode.password = obj.password;
-      }
-      return Object.assign({ err: GenCode.err }, obj);
+      const objRlt = Object.assign({
+        err: GenCode.err,
+        password: GenCode.password,
+        remain: 0,
+      }, obj);
+      GenCode.password = objRlt.password;
+      return objRlt;
     },
     _err(code = 0) {
       GenCode.err.code = code;
@@ -144,10 +161,10 @@ $(function () {
         GenCode._err(2);
         return false;
       }
-      // if (GenCode.secret.length < 4) {
-      //   GenCode._err(3);
-      //   return false;
-      // }
+      if (GenCode.secret.length < 4) {
+        GenCode._err(3);
+        return false;
+      }
       GenCode._err(0);
       GenCode.period_d = parseInt(GenCode.period_d);
       GenCode.secret = parseInt(GenCode.secret);
@@ -157,7 +174,7 @@ $(function () {
     _xnxfTotp() {
       // 检查密钥
       if (!GenCode._checkSecret()) {
-        return GenCode._buildRlt({ password: GenCode.err.msg });
+        return GenCode._buildRlt();
       }
 
       // 初始值
@@ -219,8 +236,13 @@ $(function () {
         const { password, remain } = GenCode._init(secret, cycle)._xnxfTotp();
         return { secret, cycle, password, remain };
       });
-      // 按 remain 值降序
-      GenCode.history = GenCode.history.sort((a, b) => b.remain - a.remain);
+      // 先按 secret 升序，再按 remain 倒序
+      GenCode.history.sort((a, b) => {
+        if (a.secret === b.secret) {
+          return b.remain - a.remain;
+        }
+        return a.secret - b.secret;
+      });
       // console.log(GenCode.history);
     },
     // -----

@@ -1,10 +1,10 @@
 // localStorage 封装
 // eslint-disable-next-line no-unused-vars
 const lsObj = {
-  setItem: function (key, value) {
+  setItem: function(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
   },
-  getItem: function (key, def = "") {
+  getItem: function(key, def = "") {
     const item = localStorage.getItem(key);
     if (item) {
       return JSON.parse(item);
@@ -15,7 +15,7 @@ const lsObj = {
 
 // 面板折叠封装
 // eslint-disable-next-line no-unused-vars
-const fnCollapse = function (btn, content) {
+const fnCollapse = function(btn, content) {
   // 随机生成一个 group id，不用 substr
   const groupID = Math.random().toString(36).slice(2);
   const $$btn = document.querySelectorAll(btn);
@@ -23,7 +23,7 @@ const fnCollapse = function (btn, content) {
   $$btn.forEach(($btn) => {
     // 为每个按钮添加 group id
     $btn.dataset.group = groupID;
-    $btn.addEventListener("click", function () {
+    $btn.addEventListener("click", function() {
       const target = this.dataset.target;
       // console.log(target);
       // 关闭其他面板

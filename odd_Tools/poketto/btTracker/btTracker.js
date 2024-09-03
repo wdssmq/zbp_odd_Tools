@@ -1,10 +1,10 @@
-$(function () {
+$(function() {
   // 自动选中监听
-  $("#output").mouseenter(function () {
+  $("#output").mouseenter(function() {
     $(this).focus().select();
   });
 
-  $("#btn-sole").click(function () {
+  $("#btn-sole").click(function() {
     fnSole();
     $("#btn-copy").text("复制");
   });
@@ -20,7 +20,7 @@ $(function () {
 
   function fnGet(url, callback) {
     const xmlhttp = new XMLHttpRequest();
-    xmlhttp.onload = function (e) {
+    xmlhttp.onload = function(e) {
       if (this.status == 200 || this.status == 304) {
         callback(this.responseText);
         fnSole();
@@ -28,7 +28,7 @@ $(function () {
         console.error(this.status);
       }
     };
-    xmlhttp.onerror = function (e) {
+    xmlhttp.onerror = function(e) {
       console.error(e);
       console.error(this);
     };
@@ -40,17 +40,17 @@ $(function () {
 
   fnGet(
     "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best_ip.txt",
-    function (data) {
+    function(data) {
       document.getElementById("input").value += data;
     },
   );
   fnGet(
     "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt",
-    function (data) {
+    function(data) {
       document.getElementById("input").value += data;
     },
   );
-  fnGet("https://newtrackon.com/api/stable", function (data) {
+  fnGet("https://newtrackon.com/api/stable", function(data) {
     document.getElementById("input").value += data;
   });
 

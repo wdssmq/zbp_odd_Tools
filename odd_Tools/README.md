@@ -20,6 +20,8 @@ RSS 订阅：[https://feed.wdssmq.com](https://feed.wdssmq.com "沉冰浮水博�
 
 ## 更新历史
 
+2024-09-03：修复 [BT Tracker](https://demo.wdssmq.com/tools/btTracker/ "BT Tracker") 的复制功能；
+
 2024-02-05：[PBKDF2](https://demo.wdssmq.com/tools/PBKDF2/ "PBKDF2 - PBKDF2 演示封装 - 水水的演示站") - 所以到底有没有必要在前端加密密码？
 
 2024-02-05：[GenCode](https://demo.wdssmq.com/tools/GenCode/ "GenCode - 一个特殊的 TOTP 生成工具 - 水水的演示站") - 在密码后面加 4 位字母以提升安全性；

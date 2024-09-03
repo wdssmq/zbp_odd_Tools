@@ -9,9 +9,13 @@ $(function () {
     $("#btn-copy").text("复制");
   });
 
-  let clipboard = new ClipboardJS("#btn-copy");
-  clipboard.on("success", function (e) {
-    e.trigger.innerHTML = "已复制";
+  // 复制
+  const clipboardObj = navigator.clipboard;
+  $("#btn-copy").click(function() {
+    clipboardObj.writeText($("#output").val()).then(
+      () => {
+        $("#btn-copy").text("已复制");
+      });
   });
 
   function fnGet(url, callback) {

@@ -39,7 +39,7 @@
       "label": "爱发电",
       "msg": "@wdssmq",
       "color": "blueviolet",
-      "url": "https://afdian.net/a/wdssmq",
+      "url": "https://afdian.com/a/wdssmq",
       "serNum": 3
     },
     {
@@ -104,7 +104,7 @@
       "query": "count",
       "url": "https://api.swo.moe/stats/zhihu/-uid-",
       "imgBase": "https://img.shields.io/badge/dynamic/json?style=social&label=-label-&query=-query-&url=-url-&color=-color-&logo=-logo-",
-      "urlBase": "https://afdian.net/a/-uid-",
+      "urlBase": "https://afdian.com/a/-uid-",
       "uid": "wdssmq",
       "serNum": 9
     },

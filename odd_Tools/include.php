@@ -105,7 +105,7 @@ function UpdatePlugin_odd_Tools()
   global $zbp;
   $zbp->BuildTemplate();
   if (!$zbp->Config('odd_Tools')->HasKey("sidebar")) {
-    $zbp->Config('odd_Tools')->sidebar = '<p><a class="img-wrap" target="_blank" href="https://afdian.net/@wdssmq"><img src="https://www.wdssmq.com/zb_users/logos/afdian.png" alt="爱发电" title="爱发电"></a></p><p>可在后台编辑</p>';
+    $zbp->Config('odd_Tools')->sidebar = '<p><a class="img-wrap" target="_blank" href="https://afdian.com/@wdssmq"><img src="https://www.wdssmq.com/zb_users/logos/afdian.png" alt="爱发电" title="爱发电"></a></p><p>可在后台编辑</p>';
     $zbp->SaveConfig('odd_Tools');
   }
 }

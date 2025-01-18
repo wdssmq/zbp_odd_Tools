@@ -1,6 +1,6 @@
 $(function() {
   // 自动选中监听
-  $("input.select, textarea.auto-select").mouseenter(function() {
+  $("input.auto-select, textarea.auto-select").mouseenter(function() {
     $(this).focus().select();
   });
   // 默认点击事件

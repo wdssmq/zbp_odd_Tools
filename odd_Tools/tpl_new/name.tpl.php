@@ -34,7 +34,7 @@
             <div class="field-body">
               <div class="field">
                 <div class="control">
-                  <input id="newName-InPut" name="newName-InPut" class="input select" type="text" placeholder="输入内容" value="">
+                  <input id="newName-InPut" name="newName-InPut" class="input" type="text" placeholder="输入内容" value="">
                 </div>
               </div>
             </div>
@@ -47,7 +47,7 @@
             <div class="field-body">
               <div class="field">
                 <div class="control">
-                  <input id="newName-OutPut" name="newName-OutPut" class="input select" type="text" placeholder="执行结果" value="">
+                  <input id="newName-OutPut" name="newName-OutPut" class="input auto-select" type="text" placeholder="执行结果" value="">
                 </div>
               </div>
             </div>

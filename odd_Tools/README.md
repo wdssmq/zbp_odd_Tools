@@ -20,6 +20,8 @@ RSS 订阅：[https://feed.wdssmq.com](https://feed.wdssmq.com "沉冰浮水博�
 
 ## 更新历史
 
+2025-01-18：[qbit-rss](https://demo.wdssmq.com/tools/qbit-rss/ "qbit-rss - 生成用于 qBittorrent 的 RSS 配置 - 水水的演示站") - 生成用于 qBittorrent 的 RSS 配置
+
 2024-09-03：修复 [BT Tracker](https://demo.wdssmq.com/tools/btTracker/ "BT Tracker") 的复制功能；
 
 2024-02-05：[PBKDF2](https://demo.wdssmq.com/tools/PBKDF2/ "PBKDF2 - PBKDF2 演示封装 - 水水的演示站") - 所以到底有没有必要在前端加密密码？
